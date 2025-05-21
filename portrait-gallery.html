@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portrait Photography - DHA Photography</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">DHA Photography</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">HOME</a></li>
+                <li><a href="index.html#Landscape">MY LANDSCAPES</a></li>
+                <li><a href="index.html#Portrait">MY PORTRAITS</a></li>
+                <li><a href="index.html#about">ABOUT ME</a></li>
+                <li><a href="index.html#contact">CONTACT</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="full-portrait-gallery" class="Portrait">
+            <h2>ALL MY PORTRAITS</h2>
+            <div class="gallery">
+                <a href="photo-details.html?id=P1" class="gallery-item-link">
+                    <div class="gallery-item">
+                        <img src="My_photographs/P/dry_leaf_with_coconut_husk.jpeg" alt="Dry Leaves With Coconut Husk">
+                        <h3>Dry Leaves With Coconut Husk</h3>
+                    </div>
+                </a>
+                <a href="photo-details.html?id=P2" class="gallery-item-link">
+                    <div class="gallery-item">
+                        <img src="My_photographs/P/Lotus_tower_and_the_building.jpeg" alt="High Profit Buildings Around Low Profit Tower">
+                        <h3>Lotus tower and the building</h3>
+                    </div>
+                </a>
+                <a href="photo-details.html?id=P3" class="gallery-item-link">
+                    <div class="gallery-item">
+                        <img src="My_photographs/P/set_of_briks.JPG" alt="Set of Bricks">
+                        <h3>Set of Bricks</h3>
+                    </div>
+                </a>
+                <a href="photo-details.html?id=P4" class="gallery-item-link">
+                    <div class="gallery-item">
+                        <img src="My_photographs/P/the_temple.jpeg" alt="The Temple">
+                        <h3>The Temple</h3>
+                    </div>
+                </a>
+                <a href="photo-details.html?id=P5" class="gallery-item-link">
+                    <div class="gallery-item">
+                        <img src="My_photographs/P/skyscraper.jpg" alt="Street Photography">
+                        <h3>Skyscraper</h3>
+                    </div>
+                </a>
+                <a href="photo-details.html?id=P6" class="gallery-item-link">
+                    <div class="gallery-item">
+                        <img src="My_photographs/P/UK_beach_flower.jpeg" alt="Uncared Beauty">
+                        <h3>Uncared Beauty</h3>
+                    </div>
+                </a>
+                <a href="photo-details.html?id=P7" class="gallery-item-link">
+                    <div class="gallery-item">
+                        <img src="My_photographs/P/Green_Green.jpg" alt="Green Green">
+                        <h3>Green Green</h3>
+                    </div>
+                </a>
+                <a href="photo-details.html?id=P8" class="gallery-item-link">
+                    <div class="gallery-item">
+                        <img src="My_photographs/P/kandy_rd.jpg" alt="Green Green">
+                        <h3>Colombo Kandy Road</h3>
+                    </div>
+                </a>
+                <a href="photo-details.html?id=P9" class="gallery-item-link">
+                    <div class="gallery-item">
+                        <img src="My_photographs/P/natural_umbrala.jpeg" alt="Green Green">
+                        <h3>Natural Umbrala</h3>
+                    </div>
+                </a>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="index.html#Portrait" class="btn">Back to Home</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My Photography. All rights reserved.</p><br>
+        <div class="social-links">
+            <a href="#"><img src="Logo/instagram .png" width="35PX"></a>
+            <a href="#"><img src="Logo/facebook png.png" width="35PX"></a>
+        </div>
+    </footer>
+
+    <script>
+        const burger = document.querySelector('.burger');
+        const nav = document.querySelector('.nav-links');
+        const navLinks = document.querySelectorAll('.nav-links li');
+
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('nav-active');
+            navLinks.forEach((link, index) => {
+                if (link.style.animation) {
+                    link.style.animation = '';
+                } else {
+                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                }
+            });
+            burger.classList.toggle('toggle');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('nav-active');
+                burger.classList.remove('toggle');
+                navLinks.forEach(item => {
+                    item.style.animation = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

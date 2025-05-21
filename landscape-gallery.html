@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Landscape Photography - DHA Photography</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">DHA Photography</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">HOME</a></li>
+                <li><a href="index.html#Landscape">MY LANDSCAPES</a></li>
+                <li><a href="index.html#Portrait">MY PORTRAITS</a></li>
+                <li><a href="index.html#about">ABOUT ME</a></li>
+                <li><a href="index.html#contact">CONTACT</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="full-landscape-gallery" class="Landscape">
+            <h2>ALL MY LANDSCAPES</h2>
+            <div class="gallery">
+                <a href="photo-details.html?id=L1" class="gallery-item-link">
+                    <div class="gallery-item">
+                        <img src="My_photographs/L/Drop_of_water_on_leafs.jpg" alt="Leaves After Rain">
+                        <h3>Leaves After Rain</h3>
+                    </div>
+                </a>
+                <a href="photo-details.html?id=L2" class="gallery-item-link">
+                    <div class="gallery-item">
+                        <img src="My_photographs/L/sky_on_fire.jpeg" alt="Sky On Fire">
+                        <h3>Sky On Fire</h3>
+                    </div>
+                </a>
+                <a href="photo-details.html?id=L3" class="gallery-item-link">
+                    <div class="gallery-item">
+                        <img src="My_photographs/L/galle_face.jpeg" alt="Galle Face">
+                        <h3>Galle Face</h3>
+                    </div>
+                </a>
+                <a href="photo-details.html?id=L4" class="gallery-item-link">
+                    <div class="gallery-item">
+                        <img src="My_photographs/L/kelani_perahara_01.jpeg" alt="kelaniya Perahara">
+                        <h3>Kelaniya Perahara 2024</h3>
+                    </div>
+                </a>
+                <a href="photo-details.html?id=L5" class="gallery-item-link">
+                    <div class="gallery-item">
+                        <img src="My_photographs/L/the_train.jpeg" alt="Train Passing a Paddy">
+                        <h3>Train Passing a Paddy</h3>
+                    </div>
+                </a>
+                <a href="photo-details.html?id=L6" class="gallery-item-link">
+                    <div class="gallery-item">
+                        <img src="My_photographs/L/coconut_leaf.jpeg" alt="Coconut Leaf">
+                        <h3>Coconut Leaf</h3>
+                    </div>
+                </a>
+                <a href="photo-details.html?id=L7" class="gallery-item-link">
+                    <div class="gallery-item">
+                        <img src="My_photographs/L/kelaniya_new_bridge.jpeg" alt="kelaniya Perahara">
+                        <h3>Kelaniya New Bridge</h3>
+                    </div>
+                </a>
+                <a href="photo-details.html?id=L8" class="gallery-item-link">
+                    <div class="gallery-item">
+                        <img src="My_photographs/L/pink_flower.jpg" alt="Coconut Leaf">
+                        <h3>Two Wet Pink Flowers</h3>
+                    </div>
+                </a>
+                <a href="photo-details.html?id=L9" class="gallery-item-link">
+                    <div class="gallery-item">
+                        <img src="My_photographs/L/sun_shade_at_galle_face.jpeg" alt="Train Passing a Paddy">
+                        <h3>Sun Shade at Galle Face</h3>
+                    </div>
+                </a>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="index.html#Landscape" class="btn">Back to Home</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My Photography. All rights reserved.</p><br>
+        <div class="social-links">
+            <a href="#"><img src="Logo/instagram .png" width="35PX"></a>
+            <a href="#"><img src="Logo/facebook png.png" width="35PX"></a>
+        </div>
+    </footer>
+
+    <script>
+        const burger = document.querySelector('.burger');
+        const nav = document.querySelector('.nav-links');
+        const navLinks = document.querySelectorAll('.nav-links li');
+
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('nav-active');
+            navLinks.forEach((link, index) => {
+                if (link.style.animation) {
+                    link.style.animation = '';
+                } else {
+                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                }
+            });
+            burger.classList.toggle('toggle');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('nav-active');
+                burger.classList.remove('toggle');
+                navLinks.forEach(item => {
+                    item.style.animation = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
