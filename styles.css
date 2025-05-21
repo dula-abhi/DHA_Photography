@@ -62,7 +62,8 @@ nav {
 }
 
 .nav-links li a:hover {
-    color: #ffd700; /* Gold */
+    color: rgb(150, 150, 150); 
+    
 }
 
 /* Burger Menu Icon (for mobile) */
@@ -279,18 +280,19 @@ h1, h2 {
     text-align: center;
     border: none;
     cursor: pointer;
-    background: #007bff; /* Blue for contact button */
+    background: #333; /* Blue for contact button */
     margin-top: 20px; /* Ensure margin after form inputs */
 }
 
 .contact .btn:hover {
-    background: #0056b3;
+    background: rgb(199, 199, 199);
+    color: #000;
 }
 
 /* Footer */
 footer {
     background: #333;
-    color: #fff;
+    color: rgb(255, 255, 255);
     text-align: center;
     padding: 2rem 0;
     border-top: 1px solid #444;
@@ -304,9 +306,7 @@ footer {
     transition: color 0.3s ease;
 }
 
-.social-links a:hover {
-    color: #ffd700;
-}
+
 
 /* Link Styling for Gallery Items */
 .gallery-item-link {
