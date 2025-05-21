@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="detail-page-title">Photo Details - My Photography Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Updated Styles for the Detail Page */
+        .detail-container {
+            max-width: 1200px; /* Increased max-width for fuller page size */
+            margin: 80px auto 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center; /* Still center overall content like back button */
+        }
+
+        .photo-content-wrapper {
+            display: flex; /* Enables side-by-side layout */
+            flex-direction: row; /* Default: image on left, text on right */
+            gap: 40px; /* Space between image and details */
+            align-items: flex-start; /* Align items to the top */
+            margin-bottom: 40px; /* Space below the main content block */
+        }
+
+        .photo-image-column {
+            flex: 1; /* Takes up one part of the available space */
+            min-width: 300px; /* Ensures image column doesn't get too small */
+            max-width: 50%; /* Image column max width */
+            /* You can set a fixed width for the column if you want: */
+            /* width: 450px; */ /* Example fixed width */
+            /* flex: none; */ /* If using fixed width, set flex to none */
+        }
+
+        .photo-image-column img {
+            width: 100%;
+            /* Control the height here: */
+            height: 450px; /* **SET A FIXED HEIGHT FOR THE IMAGE** - adjust this value */
+            object-fit: contain; /* **Ensures the entire image is visible within the height/width.** Use 'cover' to fill the space and crop. */
+            display: block; /* Removes extra space below image */
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: #f0f0f0; /* Add a background if object-fit: contain creates empty space */
+        }
+
+        .photo-details-column {
+            flex: 1.5; /* Takes up more space for details */
+            min-width: 400px; /* Ensures text column doesn't get too small */
+            text-align: left; /* Align text within this column to the left */
+        }
+
+        .detail-container h1 {
+            font-size: 2.8rem; /* Slightly larger title for impact */
+            margin-bottom: 25px;
+            color: #333;
+            text-align: center; /* Keep main title centered */
+        }
+
+        /* REMOVED: .photo-details-column h2 style */
+
+        /* Modified to stack detail spans */
+        .detail-info {
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            margin-bottom: 25px;
+            align-items: flex-start; /* Align items to the start (left) */
+        }
+        .detail-info span {
+            background-color: #eee;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 5px 0; /* Adjust margin for vertical stacking */
+            font-size: 0.95rem;
+            color: #666;
+            width: fit-content; /* Ensure background doesn't stretch full width */
+        }
+
+        .photo-description-paragraph { /* Style for the actual description paragraph */
+            font-size: 1.15rem; /* Slightly larger paragraph text */
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 20px;
+            margin-top: 0px; /* Adjust margin here to place description right below photo if needed */
+        }
+
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+
+        /* Style for error message */
+        #photo-not-found {
+            text-align: center;
+            color: #d9534f;
+            font-size: 1.2rem;
+            margin-top: 50px;
+            display: none;
+        }
+
+        /* Responsive Design for smaller screens */
+        @media (max-width: 900px) {
+            .photo-content-wrapper {
+                flex-direction: column; /* Stack columns on smaller screens */
+                align-items: center; /* Center items when stacked */
+            }
+            .photo-image-column,
+            .photo-details-column {
+                max-width: 100%; /* Take full width when stacked */
+                min-width: unset; /* Remove min-width constraint */
+            }
+            .photo-image-column img {
+                height: auto; /* Allow height to adjust naturally on mobile */
+                max-height: 400px; /* Prevent it from being excessively tall */
+            }
+            .photo-details-column {
+                text-align: center; /* Center text content when stacked */
+            }
+            /* REMOVED: .photo-details-column h2, */
+            .photo-description-paragraph { /* Center description on small screens */
+                text-align: center;
+            }
+            .detail-info {
+                justify-content: center; /* Center detail spans when stacked */
+                align-items: center; /* Center items for column direction */
+            }
+            .detail-container h1 {
+                font-size: 2rem;
+            }
+            .photo-description-paragraph { /* Adjust font size for description on small screens */
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+        <section class="detail-container">
+            <h1 id="main-page-title">Photo Details</h1>
+            <div id="photo-content-area">
+                <div class="photo-content-wrapper">
+                    <div class="photo-image-column">
+                        <img id="photo-image" src="" alt="Photo Detail">
+                    </div>
+                    <div class="photo-details-column">
+                        <p id="photo-description" class="photo-description-paragraph"></p>
+                        <div class="detail-info">
+                            <span id="photo-category"></span>
+                            <span id="photo-date"></span>
+                            <span id="photo-location"></span>
+                            <span id="photo-camera"></span>
+                            <span id="photo-width"></span>
+                            <span id="photo-height"></span>
+                            <span id="photo-size"></span>
+                        </div>
+                    </div>
+                </div>
+                <a id="back-to-gallery-link" href="index.html" class="back-link">Back to Gallery</a>
+            </div>
+
+            <div id="photo-not-found">
+                <p>Sorry, the photo you are looking for was not found.</p>
+                <a href="index01.html" class="back-link">Back to Home</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My Photography. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#" target="_blank">Facebook</a>
+            <a href="#" target="_blank">Instagram</a>
+            <a href="#" target="_blank">Twitter</a>
+        </div>
+    </footer>
+
+    <script>
+        const photos = {
+            // Landscape Photos
+            'L1': {
+                title: 'Leaves After Rain',
+                src: 'My_photographs/L/Drop_of_water_on_leafs.jpg',
+                alt: 'Leaves After Rain',
+                category: 'Nature/Landscape',
+                date: '09 November 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"2.79MB",
+                description: '',
+                backLinkTarget: 'index.html#Landscape'
+            },
+            'L2': {
+                title: 'Sky on Fire',
+                src: 'My_photographs/L/sky_on_fire.jpeg',
+                alt: 'Sky on Fire',
+                category: 'sky Landscape',
+                date: '14 November 2023',
+                location: 'Yoshida Shokanji Internatinal School, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"2268px",
+                size:"2.27MB",
+                description: '',
+                backLinkTarget: 'index.html#Landscape'
+            },
+            'L3': {
+                title: 'Leaves After Rain',
+                src: 'My_photographs/L/galle_face.jpeg',
+                alt: 'Galle Face Sea and Ground',
+                category: 'sea Landscape',
+                date: '03 September 2023',
+                location: 'Galle Face, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"3.52MB",
+                description: '',
+                backLinkTarget: 'index.html#Landscape'
+            },
+            'L4': {
+                title: 'Kelaniya Perahara 2024',
+                src: 'My_photographs/L/kelani_perahara_01.jpeg',
+                alt: 'Kelaniya Perahara 2024',
+                category: 'Event Landscape',
+                date: '24 January 2024',
+                location: 'Kelaniya Raja Maha viharaya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"4.15MB",
+                description: '',
+                backLinkTarget: 'index.html#Landscape'
+            },
+            'L5': {
+                title: 'Train Passing a Paddy',
+                src: 'My_photographs/L/the_train.jpeg',
+                alt: 'Train Passing a Paddy',
+                category: 'Moving Landscape',
+                date: '15 August 2022',
+                location: 'polgahawela, Sri Lanka',
+                camera: 'I Phone 8 plus',
+                width:"4032px",
+                height:"3024px",
+                size:"2.56MB",
+                description: '',
+                backLinkTarget: 'index.html#Landscape'
+            },
+            'L6': {
+                title: 'Coconut Leaf',
+                src: 'My_photographs/L/coconut_leaf.jpeg',
+                alt: 'Coconut Leaf',
+                category: 'Landscape',
+                date: '29 August 2023',
+                location: 'Naramala, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4000px",
+                height:"3000px",
+                size:"3.97MB",
+                description: '',
+                backLinkTarget: 'index.html#Landscape'
+            },
+            'L7': {
+                title: 'Kelaniya New Bridge',
+                src: 'My_photographs/L/kelaniya_new_bridge.jpeg',
+                alt: 'Kelaniya New Bridge',
+                category: 'Landscape',
+                date: 'October 26, 2023',
+                location: 'Peliyagoda, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"3862px",
+                height:"3024px",
+                size:"3.68MB",
+                description: '',
+                backLinkTarget: 'index.html#Landscape'
+            },
+            'L8': {
+                title: 'Two Wet Pink Flowers',
+                src: 'My_photographs/L/pink_flower.jpg',
+                alt: 'Two Wet Pink Flowers',
+                category: 'Nature/Landscape',
+                date: '26 September 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"3.59MB",
+                description: '',
+                backLinkTarget: 'index.html#Landscape'
+            },
+            'L9': {
+                title: 'Sun Shade at Galle Face',
+                src: 'My_photographs/L/sun_shade_at_galle_face.jpeg',
+                alt: 'Sun Shade at Galle Face',
+                category: 'Landscape',
+                date: '05 February 2024',
+                location: 'Galle Face Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"3.88MB",
+                description: '',
+                backLinkTarget: 'index.html#Landscape'
+            },
+            
+
+            // Portrait and Other Photos//
+            //========================================================================================================================================================//
+            'P1': {
+                title: 'Dry Leaves With Burnt Coconut Husk',
+                src: "My_photographs/P/dry_leaf_with_coconut_husk.jpeg",
+                alt: 'Dry Leaves With Coconut Husk',
+                category: 'Abstract/Macro',
+                date: '29 November 2022',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"2268px",
+                size:"5.79MB",
+                description:"",
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P2': {
+                title: 'High Profit Buildings Around Low Profit Tower',
+                src: 'My_photographs/P/Lotus_tower_and_the_building.jpeg',
+                alt: 'High Profit Buildings Around Low Profit Tower',
+                category: 'Urban/Social Commentary',
+                date: '14 August 2023',
+                location: 'Bere Wawa, Colombo, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"44.58MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P3': {
+                title: 'Set of Bricks',
+                src: 'My_photographs/P/set_of_briks.JPG',
+                alt: 'Set of Bricks',
+                category: 'Texture/Still Life',
+                date: '29 November 2022',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"2268px",
+                height:"4032px",
+                size:"5.30MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P4': {
+                title: 'The Temple',
+                src: 'My_photographs/P/the_temple.jpeg',
+                alt: 'The Temple',
+                category: 'Architecture/Culture',
+                date: '19 January 2023',
+                location: 'RAnmutugala Temple, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"2.43MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P5': {
+                title: 'Skyscraper',
+                src: 'My_photographs/P/skyscraper.jpg',
+                alt: 'Skyscraper',
+                category: 'Urban/Architecture',
+                date: '01 February 2023',
+                location: 'Colombo Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"3000px",
+                height:"4000px",
+                size:"4.47MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P6': {
+                title: 'Uncared Beauty',
+                src: 'My_photographs/P/UK_beach_flower.jpeg',
+                alt: 'Uncared Beauty',
+                category: 'Nature/Abstract',
+                date: '17 April 2023',
+                location: 'Uswetakeiyawa Beach, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"2268px",
+                height:"4032px",
+                size:"3.05MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P7': {
+                title: 'Green leaf fall',
+                src: "My_photographs/P/Green_Green.jpg",
+                alt: 'Green leaf fall',
+                category: 'Macro/Nature',
+                date: '17 Novermber 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"3000px",
+                height:"4000px",
+                size:"7.07MB",
+                description: "",
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P8': {
+                title: 'Colombo Kandy Road',
+                src: 'My_photographs/P/kandy_rd.jpg',
+                alt: 'Green Green',
+                category: 'Street',
+                date: '28 January 2023',
+                location: 'Kirilawala Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"1096px",
+                height:"1461px",
+                size:"1MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P9': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const photoId = urlParams.get('id');
+
+            const photo = photos[photoId];
+
+            const mainPageTitle = document.getElementById('main-page-title');
+            const photoContentArea = document.getElementById('photo-content-area');
+            const photoNotFound = document.getElementById('photo-not-found');
+
+            // Get the element for the description paragraph
+            const photoDescriptionParagraph = document.getElementById('photo-description');
+
+            if (photo) {
+                // Set the page title in the browser tab
+                document.getElementById('detail-page-title').textContent = photo.title + ' - My Photography Portfolio';
+
+                // Set the BIG H1 on the page to the photo's title
+                mainPageTitle.textContent = photo.title;
+
+                // Populate the actual description paragraph (replaces the 'small title')
+                if (photo.description) {
+                    photoDescriptionParagraph.textContent = photo.description;
+                    photoDescriptionParagraph.style.display = 'block'; // Ensure it's visible if there's content
+                } else {
+                    photoDescriptionParagraph.textContent = ''; // Clear content if no description
+                    photoDescriptionParagraph.style.display = 'none'; // Hide the paragraph if no description
+                }
+
+                // Populate other photo details with bold labels
+                document.getElementById('photo-image').src = photo.src;
+                document.getElementById('photo-image').alt = photo.alt;
+                document.getElementById('photo-category').innerHTML = '<strong>Category:</strong> ' + photo.category;
+                document.getElementById('photo-date').innerHTML = '<strong>Date:</strong> ' + photo.date;
+                document.getElementById('photo-location').innerHTML = '<strong>Location:</strong> ' + photo.location;
+                document.getElementById('photo-camera').innerHTML = '<strong>Camera:</strong> ' + photo.camera;
+
+                // Set width, height, and size, checking if they exist
+                document.getElementById('photo-width').innerHTML = photo.width ? '<strong>Width:</strong> ' + photo.width : '';
+                document.getElementById('photo-height').innerHTML = photo.height ? '<strong>Height:</strong> ' + photo.height : '';
+                document.getElementById('photo-size').innerHTML = photo.size ? '<strong>Size:</strong> ' + photo.size : '';
+
+
+                document.getElementById('back-to-gallery-link').href = photo.backLinkTarget;
+
+                // Ensure photo content is visible and "not found" is hidden
+                photoContentArea.style.display = 'block';
+                photoNotFound.style.display = 'none';
+
+            } else {
+                // If photo not found, hide content and show "not found" message
+                document.getElementById('detail-page-title').textContent = 'Photo Not Found - My Photography Portfolio';
+                mainPageTitle.textContent = 'Photo Not Found'; // Set the H1 on the page
+                photoContentArea.style.display = 'none';
+                photoNotFound.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
