@@ -10,6 +10,7 @@ body {
     line-height: 1.6;
     background-color: #f4f4f4;
     color: #333;
+    overflow-x: hidden; /* Prevent horizontal scroll on small screens */
 }
 
 /* Header & Navigation */
@@ -39,24 +40,43 @@ nav {
     font-weight: bold;
 }
 
-nav ul {
+.logo img {
+    max-height: 70px; /* Ensure logo doesn't become too large */
+    width: auto;
+}
+
+.nav-links {
     list-style: none;
     display: flex;
 }
 
-nav ul li {
+.nav-links li {
     margin-left: 20px;
 }
 
-nav ul li a {
+.nav-links li a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
+.nav-links li a:hover {
     color: #ffd700; /* Gold */
+}
+
+/* Burger Menu Icon (for mobile) */
+.burger {
+    display: none; /* Hidden by default */
+    cursor: pointer;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 5px;
+    transition: all 0.3s ease;
 }
 
 /* General Section Styling */
@@ -80,6 +100,7 @@ h1, h2 {
     text-decoration: none;
     border-radius: 5px;
     transition: background 0.3s ease;
+    margin: 5px; /* Add margin for spacing between buttons on small screens */
 }
 
 .btn:hover {
@@ -112,6 +133,7 @@ h1, h2 {
 .hero-content {
     position: relative;
     z-index: 1;
+    max-width: 800px; /* Constrain content width */
 }
 
 .hero h1 {
@@ -125,10 +147,18 @@ h1, h2 {
     margin-bottom: 30px;
 }
 
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+    justify-content: center;
+    gap: 15px; /* Space between buttons */
+}
+
+
 /* Portfolio Section (General gallery item styling) */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted minmax for smaller screens */
     gap: 30px;
 }
 
@@ -138,12 +168,14 @@ h1, h2 {
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     text-align: center;
-    /* transition for transform is applied via .gallery-item-link:hover .gallery-item */
+    transition: transform 0.3s ease; /* Ensure transition is on the item itself */
 }
 
 .gallery-item h3 {
     margin: 15px 0;
     color: #333;
+    padding: 0 10px; /* Add padding to prevent text from touching edges */
+    font-size: 1.2rem; /* Adjust font size for better readability */
 }
 
 /* --- Landscape Gallery Image Styling --- */
@@ -189,6 +221,7 @@ h1, h2 {
 .about-content p {
     font-size: 1.1rem;
     line-height: 1.8;
+    padding: 0 15px; /* Add some padding for text on smaller screens */
 }
 
 /* Contact Section */
@@ -201,6 +234,7 @@ h1, h2 {
     text-align: center;
     margin-bottom: 30px;
     font-size: 1.1rem;
+    padding: 0 15px;
 }
 
 .contact form {
@@ -246,6 +280,7 @@ h1, h2 {
     border: none;
     cursor: pointer;
     background: #007bff; /* Blue for contact button */
+    margin-top: 20px; /* Ensure margin after form inputs */
 }
 
 .contact .btn:hover {
@@ -286,42 +321,123 @@ footer {
     transform: translateY(-10px);
 }
 
-/* Responsive Design */
+/* Responsive Design for Main Page */
 @media (max-width: 768px) {
     nav {
+        padding: 0 15px; /* Adjust padding for smaller screens */
+    }
+
+    .nav-links {
+        position: fixed;
+        right: 0;
+        top: 80px; /* Height of header */
+        height: calc(100vh - 80px); /* Adjust height to fill remaining viewport */
+        background-color: #333;
+        display: flex;
         flex-direction: column;
+        align-items: center;
+        width: 60%; /* Half the screen width */
+        transform: translateX(100%); /* Start off-screen */
+        transition: transform 0.5s ease-in-out;
+        z-index: 999; /* Ensure nav is above other content but below header */
+        padding-top: 20px;
     }
 
-    nav ul {
-        margin-top: 15px;
-        flex-wrap: wrap;
-        justify-content: center;
+    .nav-links li {
+        opacity: 0; /* Hidden by default */
+        margin: 20px 0; /* Adjust vertical spacing */
     }
 
-    nav ul li {
-        margin: 0 10px 10px 10px;
+    .burger {
+        display: block; /* Show burger icon */
+    }
+
+    .nav-active {
+        transform: translateX(0%); /* Slide in */
+    }
+
+    /* Burger Animation */
+    .toggle .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .toggle .line2 {
+        opacity: 0;
+    }
+    .toggle .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    @keyframes navLinkFade {
+        from {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0px);
+        }
+    }
+
+    .hero {
+        padding: 100px 20px; /* Adjust padding for smaller screens */
+        min-height: 400px; /* Reduce min-height for mobile */
     }
 
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem; /* Smaller font size for mobile */
     }
 
     .hero p {
-        font-size: 1rem;
+        font-size: 1rem; /* Smaller font size for mobile */
+    }
+
+    .hero-buttons {
+        flex-direction: column; /* Stack buttons vertically on very small screens */
+        align-items: center;
+    }
+
+    section {
+        padding: 60px 15px; /* Adjust section padding */
+    }
+
+    h1, h2 {
+        font-size: 2rem; /* Smaller headings for mobile */
+        margin-bottom: 30px;
     }
 
     .gallery {
         grid-template-columns: 1fr; /* Stack images on small screens */
     }
 
-    .about-content {
-        flex-direction: column;
+    .Landscape .gallery-item img,
+    .Portrait .gallery-item img {
+        height: 250px; /* Adjust gallery image height for mobile */
     }
 
-    .profile-pic {
-        margin-bottom: 20px;
+    .about-content p {
+        font-size: 1rem; /* Adjust font size for about text */
+    }
+
+    .contact form {
+        padding: 20px; /* Adjust form padding */
     }
 }
 
+/* Optional: Even smaller screens (e.g., iPhone 5/SE) */
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.8rem;
+    }
 
+    .hero p {
+        font-size: 0.9rem;
+    }
 
+    .logo img {
+        height: 60px; /* Smaller logo on very small screens */
+    }
+
+    .nav-links {
+        width: 80%; /* Wider menu on very small screens */
+    }
+}

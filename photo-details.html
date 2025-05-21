@@ -8,83 +8,75 @@
     <style>
         /* Updated Styles for the Detail Page */
         .detail-container {
-            max-width: 1200px; /* Increased max-width for fuller page size */
+            max-width: 1200px;
             margin: 80px auto 40px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            text-align: center; /* Still center overall content like back button */
+            text-align: center;
         }
 
         .photo-content-wrapper {
-            display: flex; /* Enables side-by-side layout */
-            flex-direction: row; /* Default: image on left, text on right */
-            gap: 40px; /* Space between image and details */
-            align-items: flex-start; /* Align items to the top */
-            margin-bottom: 40px; /* Space below the main content block */
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+            align-items: flex-start;
+            margin-bottom: 40px;
         }
 
         .photo-image-column {
-            flex: 1; /* Takes up one part of the available space */
-            min-width: 300px; /* Ensures image column doesn't get too small */
-            max-width: 50%; /* Image column max width */
-            /* You can set a fixed width for the column if you want: */
-            /* width: 450px; */ /* Example fixed width */
-            /* flex: none; */ /* If using fixed width, set flex to none */
+            flex: 1;
+            min-width: 300px;
+            max-width: 50%;
         }
 
         .photo-image-column img {
             width: 100%;
-            /* Control the height here: */
-            height: 450px; /* **SET A FIXED HEIGHT FOR THE IMAGE** - adjust this value */
-            object-fit: contain; /* **Ensures the entire image is visible within the height/width.** Use 'cover' to fill the space and crop. */
-            display: block; /* Removes extra space below image */
+            height: 450px; /* SET A FIXED HEIGHT FOR THE IMAGE - adjust this value */
+            object-fit: contain; /* Ensures the entire image is visible within the height/width. Use 'cover' to fill the space and crop. */
+            display: block;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            background-color: #f0f0f0; /* Add a background if object-fit: contain creates empty space */
+            background-color: #f0f0f0;
         }
 
         .photo-details-column {
-            flex: 1.5; /* Takes up more space for details */
-            min-width: 400px; /* Ensures text column doesn't get too small */
-            text-align: left; /* Align text within this column to the left */
+            flex: 1.5;
+            min-width: 400px;
+            text-align: left;
         }
 
         .detail-container h1 {
-            font-size: 2.8rem; /* Slightly larger title for impact */
+            font-size: 2.8rem;
             margin-bottom: 25px;
             color: #333;
-            text-align: center; /* Keep main title centered */
+            text-align: center;
         }
 
-        /* REMOVED: .photo-details-column h2 style */
-
-        /* Modified to stack detail spans */
         .detail-info {
             display: flex;
-            flex-direction: column; /* Stack items vertically */
+            flex-direction: column;
             margin-bottom: 25px;
-            align-items: flex-start; /* Align items to the start (left) */
+            align-items: flex-start;
         }
         .detail-info span {
             background-color: #eee;
             padding: 8px 15px;
             border-radius: 20px;
-            margin: 5px 0; /* Adjust margin for vertical stacking */
+            margin: 5px 0;
             font-size: 0.95rem;
             color: #666;
-            width: fit-content; /* Ensure background doesn't stretch full width */
+            width: fit-content;
         }
 
-        .photo-description-paragraph { /* Style for the actual description paragraph */
-            font-size: 1.15rem; /* Slightly larger paragraph text */
+        .photo-description-paragraph {
+            font-size: 1.15rem;
             line-height: 1.7;
             color: #555;
             margin-bottom: 20px;
-            margin-top: 0px; /* Adjust margin here to place description right below photo if needed */
+            margin-top: 0px;
         }
-
 
         .back-link {
             display: inline-block;
@@ -100,7 +92,6 @@
             background-color: #0056b3;
         }
 
-        /* Style for error message */
         #photo-not-found {
             text-align: center;
             color: #d9534f;
@@ -112,33 +103,32 @@
         /* Responsive Design for smaller screens */
         @media (max-width: 900px) {
             .photo-content-wrapper {
-                flex-direction: column; /* Stack columns on smaller screens */
-                align-items: center; /* Center items when stacked */
+                flex-direction: column;
+                align-items: center;
             }
             .photo-image-column,
             .photo-details-column {
-                max-width: 100%; /* Take full width when stacked */
-                min-width: unset; /* Remove min-width constraint */
+                max-width: 100%;
+                min-width: unset;
             }
             .photo-image-column img {
-                height: auto; /* Allow height to adjust naturally on mobile */
-                max-height: 400px; /* Prevent it from being excessively tall */
+                height: auto;
+                max-height: 400px;
             }
             .photo-details-column {
-                text-align: center; /* Center text content when stacked */
+                text-align: center;
             }
-            /* REMOVED: .photo-details-column h2, */
-            .photo-description-paragraph { /* Center description on small screens */
+            .photo-description-paragraph {
                 text-align: center;
             }
             .detail-info {
-                justify-content: center; /* Center detail spans when stacked */
-                align-items: center; /* Center items for column direction */
+                justify-content: center;
+                align-items: center;
             }
             .detail-container h1 {
                 font-size: 2rem;
             }
-            .photo-description-paragraph { /* Adjust font size for description on small screens */
+            .photo-description-paragraph {
                 font-size: 1rem;
             }
         }
@@ -172,7 +162,7 @@
 
             <div id="photo-not-found">
                 <p>Sorry, the photo you are looking for was not found.</p>
-                <a href="index01.html" class="back-link">Back to Home</a>
+                <a href="index.html" class="back-link">Back to Home</a>
             </div>
         </section>
     </main>
@@ -180,9 +170,9 @@
     <footer>
         <p>&copy; 2025 My Photography. All rights reserved.</p>
         <div class="social-links">
-            <a href="#" target="_blank">Facebook</a>
-            <a href="#" target="_blank">Instagram</a>
-            <a href="#" target="_blank">Twitter</a>
+            <a href="#" target="_blank" aria-label="Facebook">Facebook</a>
+            <a href="#" target="_blank" aria-label="Instagram">Instagram</a>
+            <a href="#" target="_blank" aria-label="Twitter">Twitter</a>
         </div>
     </footer>
 
@@ -218,7 +208,7 @@
                 backLinkTarget: 'index.html#Landscape'
             },
             'L3': {
-                title: 'Leaves After Rain',
+                title: 'Galle Face Sea and Ground',
                 src: 'My_photographs/L/galle_face.jpeg',
                 alt: 'Galle Face Sea and Ground',
                 category: 'sea Landscape',
@@ -315,7 +305,6 @@
                 description: '',
                 backLinkTarget: 'index.html#Landscape'
             },
-            
 
             // Portrait and Other Photos//
             //========================================================================================================================================================//
@@ -457,26 +446,20 @@
             const photoContentArea = document.getElementById('photo-content-area');
             const photoNotFound = document.getElementById('photo-not-found');
 
-            // Get the element for the description paragraph
             const photoDescriptionParagraph = document.getElementById('photo-description');
 
             if (photo) {
-                // Set the page title in the browser tab
                 document.getElementById('detail-page-title').textContent = photo.title + ' - My Photography Portfolio';
-
-                // Set the BIG H1 on the page to the photo's title
                 mainPageTitle.textContent = photo.title;
 
-                // Populate the actual description paragraph (replaces the 'small title')
                 if (photo.description) {
                     photoDescriptionParagraph.textContent = photo.description;
-                    photoDescriptionParagraph.style.display = 'block'; // Ensure it's visible if there's content
+                    photoDescriptionParagraph.style.display = 'block';
                 } else {
-                    photoDescriptionParagraph.textContent = ''; // Clear content if no description
-                    photoDescriptionParagraph.style.display = 'none'; // Hide the paragraph if no description
+                    photoDescriptionParagraph.textContent = '';
+                    photoDescriptionParagraph.style.display = 'none';
                 }
 
-                // Populate other photo details with bold labels
                 document.getElementById('photo-image').src = photo.src;
                 document.getElementById('photo-image').alt = photo.alt;
                 document.getElementById('photo-category').innerHTML = '<strong>Category:</strong> ' + photo.category;
@@ -484,22 +467,18 @@
                 document.getElementById('photo-location').innerHTML = '<strong>Location:</strong> ' + photo.location;
                 document.getElementById('photo-camera').innerHTML = '<strong>Camera:</strong> ' + photo.camera;
 
-                // Set width, height, and size, checking if they exist
                 document.getElementById('photo-width').innerHTML = photo.width ? '<strong>Width:</strong> ' + photo.width : '';
                 document.getElementById('photo-height').innerHTML = photo.height ? '<strong>Height:</strong> ' + photo.height : '';
                 document.getElementById('photo-size').innerHTML = photo.size ? '<strong>Size:</strong> ' + photo.size : '';
 
-
                 document.getElementById('back-to-gallery-link').href = photo.backLinkTarget;
 
-                // Ensure photo content is visible and "not found" is hidden
                 photoContentArea.style.display = 'block';
                 photoNotFound.style.display = 'none';
 
             } else {
-                // If photo not found, hide content and show "not found" message
                 document.getElementById('detail-page-title').textContent = 'Photo Not Found - My Photography Portfolio';
-                mainPageTitle.textContent = 'Photo Not Found'; // Set the H1 on the page
+                mainPageTitle.textContent = 'Photo Not Found';
                 photoContentArea.style.display = 'none';
                 photoNotFound.style.display = 'block';
             }
@@ -507,6 +486,3 @@
     </script>
 </body>
 </html>
-
-
-

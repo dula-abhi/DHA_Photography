@@ -10,15 +10,20 @@
     <header>
         <nav>
             <div class="logo">
-                <a href="#"><img src="Logo/logo01.jpg" width="" height="70px"></a>
+                <a href="#"><img src="Logo/logo01.jpg" width="" height="70px" alt="Portfolio Logo"></a>
             </div>
-            <ul>
+            <ul class="nav-links">
                 <li><a href="#home">HOME</a></li>
                 <li><a href="#Landscape">MY LANDSCAPES</a></li>
                 <li><a href="#Portrait">MY PORTRAITS</a></li>
                 <li><a href="#about">ABOUT ME</a></li>
                 <li><a href="#contact">CONTACT</a></li>
             </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
         </nav>
     </header>
 
@@ -27,8 +32,10 @@
             <div class="hero-content">
                 <h1>Capturing Moments, Creating Memories</h1>
                 <p>Welcome to my world of Mobile photography. Explore my diverse portfolio.</p>
-                <a href="#Landscape" class="btn">View My Landscape</a> &nbsp; | &nbsp;
-                <a href="#Portrait" class="btn">View My Portrait</a>
+                <div class="hero-buttons">
+                    <a href="#Landscape" class="btn">View My Landscape</a>
+                    <a href="#Portrait" class="btn">View My Portrait</a>
+                </div>
             </div>
         </section>
 
@@ -92,9 +99,6 @@
             </div>
         </section>
 
-
-        <!--Portrait and Other Photos-->
-        <!--=======================================================================================================================================================-->
         <section id="Portrait" class="Portrait">
             <h2>MY PORTRAITS</h2>
             <div class="gallery">
@@ -160,15 +164,15 @@
             <div class="about-content">
                 <img src="image/dulana01.jpg" alt="Your Photo" class="profile-pic">
                 <p>Hi, I'm Dulana Abisheka, a mobile photography enthusiast with a passion for capturing everyday moments through a creative lens. I began my journey in 2022 and have been exploring the art of photography ever since.
-
                     All my photos are taken using my Sony Xperia 1 smartphone, proving that you don’t need fancy gear to create beautiful images. Just a good eye and the right moment.
-
-                    Welcome to my world, one frame at a time.</p></div>
+                    Welcome to my world, one frame at a time.
+                </p>
+            </div>
         </section>
 
         <section id="contact" class="contact">
             <h2>Comment Me</h2>
-            <p>Have any commensts? Feel free to reach out!</p>
+            <p>Have any comments? Feel free to reach out!</p>
             <form action="#" method="POST">
                 <div class="form-group">
                     <label for="name">Name:</label>
@@ -190,12 +194,44 @@
     <footer>
         <p>&copy; 2025 My Photography. All rights reserved.</p>
         <div class="social-links">
-            <a href="#" target="_blank">Facebook</a>
-            <a href="#" target="_blank">Instagram</a>
-            <a href="#" target="_blank">Twitter</a>
+            <a href="#" target="_blank" aria-label="Facebook">Facebook</a>
+            <a href="#" target="_blank" aria-label="Instagram">Instagram</a>
+            <a href="#" target="_blank" aria-label="Twitter">Twitter</a>
         </div>
     </footer>
+
+    <script>
+        const burger = document.querySelector('.burger');
+        const nav = document.querySelector('.nav-links');
+        const navLinks = document.querySelectorAll('.nav-links li');
+
+        burger.addEventListener('click', () => {
+            // Toggle Nav
+            nav.classList.toggle('nav-active');
+
+            // Animate Links
+            navLinks.forEach((link, index) => {
+                if (link.style.animation) {
+                    link.style.animation = '';
+                } else {
+                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                }
+            });
+
+            // Burger Animation
+            burger.classList.toggle('toggle');
+        });
+
+        // Close nav when a link is clicked (for smooth scrolling)
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('nav-active');
+                burger.classList.remove('toggle');
+                navLinks.forEach(item => {
+                    item.style.animation = ''; // Reset animation on close
+                });
+            });
+        });
+    </script>
 </body>
 </html>
-
-
