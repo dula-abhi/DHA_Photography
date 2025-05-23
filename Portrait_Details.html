@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="detail-page-title">Photo Details - My Photography Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Updated Styles for the Detail Page */
+        .detail-container {
+            max-width: 1200px;
+            margin: 80px auto 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .photo-content-wrapper {
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+
+        .photo-image-column {
+            flex: 1;
+            min-width: 300px;
+            max-width: 50%;
+        }
+
+        .photo-image-column img {
+            width: 100%;
+            height: 450px; /* SET A FIXED HEIGHT FOR THE IMAGE - adjust this value */
+            object-fit: contain; /* Ensures the entire image is visible within the height/width. Use 'cover' to fill the space and crop. */
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: #f0f0f0;
+        }
+
+        .photo-details-column {
+            flex: 1.5;
+            min-width: 400px;
+            text-align: left;
+        }
+
+        .detail-container h1 {
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            color: #333;
+            text-align: center;
+        }
+
+        .detail-info {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 25px;
+            align-items: flex-start;
+        }
+        .detail-info span {
+            background-color: #eee;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 5px 0;
+            font-size: 0.95rem;
+            color: #666;
+            width: fit-content;
+        }
+
+        .photo-description-paragraph {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 20px;
+            margin-top: 0px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+
+        #photo-not-found {
+            text-align: center;
+            color: #d9534f;
+            font-size: 1.2rem;
+            margin-top: 50px;
+            display: none;
+        }
+
+        /* Responsive Design for smaller screens */
+        @media (max-width: 900px) {
+            .photo-content-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+            .photo-image-column,
+            .photo-details-column {
+                max-width: 100%;
+                min-width: unset;
+            }
+            .photo-image-column img {
+                height: auto;
+                max-height: 400px;
+            }
+            .photo-details-column {
+                text-align: center;
+            }
+            .photo-description-paragraph {
+                text-align: center;
+            }
+            .detail-info {
+                justify-content: center;
+                align-items: center;
+            }
+            .detail-container h1 {
+                font-size: 2rem;
+            }
+            .photo-description-paragraph {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+        <section class="detail-container">
+            <h1 id="main-page-title">Photo Details</h1>
+            <div id="photo-content-area">
+                <div class="photo-content-wrapper">
+                    <div class="photo-image-column">
+                        <img id="photo-image" src="" alt="Photo Detail">
+                    </div>
+                    <div class="photo-details-column">
+                        <p id="photo-description" class="photo-description-paragraph"></p>
+                        <div class="detail-info">
+                            <span id="photo-category"></span>
+                            <span id="photo-date"></span>
+                            <span id="photo-location"></span>
+                            <span id="photo-camera"></span>
+                            <span id="photo-width"></span>
+                            <span id="photo-height"></span>
+                            <span id="photo-size"></span>
+                        </div>
+                    </div>
+                </div>
+                <a id="back-to-gallery-link" href="index.html" class="back-link">Back to Gallery</a>
+            </div>
+
+            <div id="photo-not-found">
+                <p>Sorry, the photo you are looking for was not found.</p>
+                <a href="index.html" class="back-link">Back to Home</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My Photography. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#" target="_blank" aria-label="Facebook">Facebook</a>
+            <a href="#" target="_blank" aria-label="Instagram">Instagram</a>
+            <a href="#" target="_blank" aria-label="Twitter">Twitter</a>
+        </div>
+    </footer>
+
+    <script>
+        const photos = {
+
+            // Portrait and Other Photos//
+            //========================================================================================================================================================//
+            'P1': {
+                title: 'Dry Leaves With Burnt Coconut Husk',
+                src: "My_photographs/P/dry_leaf_with_coconut_husk.jpeg",
+                alt: 'Dry Leaves With Coconut Husk',
+                category: 'Abstract/Macro',
+                date: '29 November 2022',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"2268px",
+                size:"5.79MB",
+                description:"",
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P2': {
+                title: 'High Profit Buildings Around Low Profit Tower',
+                src: 'My_photographs/P/Lotus_tower_and_the_building.jpeg',
+                alt: 'High Profit Buildings Around Low Profit Tower',
+                category: 'Urban/Social Commentary',
+                date: '14 August 2023',
+                location: 'Bere Wawa, Colombo, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"44.58MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P3': {
+                title: 'Set of Bricks',
+                src: 'My_photographs/P/set_of_briks.JPG',
+                alt: 'Set of Bricks',
+                category: 'Texture/Still Life',
+                date: '29 November 2022',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"2268px",
+                height:"4032px",
+                size:"5.30MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P4': {
+                title: 'The Temple',
+                src: 'My_photographs/P/the_temple.jpeg',
+                alt: 'The Temple',
+                category: 'Architecture/Culture',
+                date: '19 January 2023',
+                location: 'RAnmutugala Temple, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"2.43MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P5': {
+                title: 'Skyscraper',
+                src: 'My_photographs/P/skyscraper.jpg',
+                alt: 'Skyscraper',
+                category: 'Urban/Architecture',
+                date: '01 February 2023',
+                location: 'Colombo Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"3000px",
+                height:"4000px",
+                size:"4.47MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P6': {
+                title: 'Uncared Beauty',
+                src: 'My_photographs/P/UK_beach_flower.jpeg',
+                alt: 'Uncared Beauty',
+                category: 'Nature/Abstract',
+                date: '17 April 2023',
+                location: 'Uswetakeiyawa Beach, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"2268px",
+                height:"4032px",
+                size:"3.05MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P7': {
+                title: 'Green leaf fall',
+                src: "My_photographs/P/Green_Green.jpg",
+                alt: 'Green leaf fall',
+                category: 'Macro/Nature',
+                date: '17 Novermber 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"3000px",
+                height:"4000px",
+                size:"7.07MB",
+                description: "",
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P8': {
+                title: 'Colombo Kandy Road',
+                src: 'My_photographs/P/kandy_rd.jpg',
+                alt: 'Green Green',
+                category: 'Street',
+                date: '28 January 2023',
+                location: 'Kirilawala Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"1096px",
+                height:"1461px",
+                size:"1MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P9': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P10': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P11': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P12': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P13': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P14': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P15': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P16': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P17': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P18': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P19': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P20': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P21': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P22': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P23': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P24': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P25': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P25': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P26': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P27': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P28': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P29': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P30': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P31': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            },
+            'P32': {
+                title: 'Natural Umbrella',
+                src: 'My_photographs/P/natural_umbrala.jpeg',
+                alt: 'Natural Umbrella',
+                category: 'Nature/Trees',
+                date: '01 April 2023',
+                location: 'Polhena, Kelaniya, Sri Lanka',
+                camera: 'Sony Xperia 1',
+                width:"4032px",
+                height:"3024px",
+                size:"7.10MB",
+                description: '',
+                backLinkTarget: 'index.html#Portrait'
+            }
+
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const photoId = urlParams.get('id');
+
+            const photo = photos[photoId];
+
+            const mainPageTitle = document.getElementById('main-page-title');
+            const photoContentArea = document.getElementById('photo-content-area');
+            const photoNotFound = document.getElementById('photo-not-found');
+
+            const photoDescriptionParagraph = document.getElementById('photo-description');
+
+            if (photo) {
+                document.getElementById('detail-page-title').textContent = photo.title + ' - My Photography Portfolio';
+                mainPageTitle.textContent = photo.title;
+
+                if (photo.description) {
+                    photoDescriptionParagraph.textContent = photo.description;
+                    photoDescriptionParagraph.style.display = 'block';
+                } else {
+                    photoDescriptionParagraph.textContent = '';
+                    photoDescriptionParagraph.style.display = 'none';
+                }
+
+                document.getElementById('photo-image').src = photo.src;
+                document.getElementById('photo-image').alt = photo.alt;
+                document.getElementById('photo-category').innerHTML = '<strong>Category:</strong> ' + photo.category;
+                document.getElementById('photo-date').innerHTML = '<strong>Date:</strong> ' + photo.date;
+                document.getElementById('photo-location').innerHTML = '<strong>Location:</strong> ' + photo.location;
+                document.getElementById('photo-camera').innerHTML = '<strong>Camera:</strong> ' + photo.camera;
+
+                document.getElementById('photo-width').innerHTML = photo.width ? '<strong>Width:</strong> ' + photo.width : '';
+                document.getElementById('photo-height').innerHTML = photo.height ? '<strong>Height:</strong> ' + photo.height : '';
+                document.getElementById('photo-size').innerHTML = photo.size ? '<strong>Size:</strong> ' + photo.size : '';
+
+                document.getElementById('back-to-gallery-link').href = photo.backLinkTarget;
+
+                photoContentArea.style.display = 'block';
+                photoNotFound.style.display = 'none';
+
+            } else {
+                document.getElementById('detail-page-title').textContent = 'Photo Not Found - My Photography Portfolio';
+                mainPageTitle.textContent = 'Photo Not Found';
+                photoContentArea.style.display = 'none';
+                photoNotFound.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
