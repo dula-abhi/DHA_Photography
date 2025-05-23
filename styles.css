@@ -409,9 +409,11 @@ footer {
         grid-template-columns: 1fr; /* Stack images on small screens */
     }
 
-    .Landscape .gallery-item img,
-    .Portrait .gallery-item img {
+    .Landscape .gallery-item img{
         height: 250px; /* Adjust gallery image height for mobile */
+    }
+    .Portrait .gallery-item img {
+        height: 500px; /* Adjust gallery image height for mobile */
     }
 
     .about-content p {
