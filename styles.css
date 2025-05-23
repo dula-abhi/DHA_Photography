@@ -190,7 +190,7 @@ h1, h2 {
 /* --- Portrait Gallery Image Styling --- */
 .Portrait .gallery-item img {
     width: 100%;
-    height: 400px; /* Adjust this height for your portrait photos */
+    height: 600px; /* Adjust this height for your portrait photos */
     object-fit: cover;
     display: block;
 }
